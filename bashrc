@@ -4,6 +4,14 @@ alias rstudio='/c/Program\ Files/RStudio/bin/rstudio.exe'
 
 
 
+# Automatically activate a conda environment if one exists in the starting directory
+if [[ -f "./environment.yml" ]]
+then
+    eval "$(conda shell.bash hook)" # This line is required to use conda commands in a bash script
+    conda activate ./env
+fi
+
+
 # Allow symlinks (requires developer mode to be on)
 export MSYS=winsymlinks:nativestrict
 
