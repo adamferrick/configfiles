@@ -7,8 +7,10 @@ alias rstudio='/c/Program\ Files/RStudio/bin/rstudio.exe'
 # Automatically activate a conda environment if one exists in the starting directory
 if [[ -f "./environment.yml" ]]
 then
-    eval "$(conda shell.bash hook)" # This line is required to use conda commands in a bash script
-    conda activate ./env
+    eval "$(conda shell.bash hook)"
+    env_name="$(grep "name: " environment.yml)"
+    env_name=${env_name#name: }
+    conda activate $env_name
 fi
 
 
